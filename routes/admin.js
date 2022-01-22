@@ -9,7 +9,7 @@ const productsController = require('../controllers/products');
 //const rootDir = require('../util/path');
 
 //routes below are accessed through /admin/add-product (=> get) & /admin/product (=> POST)
-router.get('/add-product', productsController.getAddProductPage);
+router.get('/add-product', productsController.getAddProduct);
 
 //.post will only respond to post requests
 router.post('/product', productsController.postAddProduct);
