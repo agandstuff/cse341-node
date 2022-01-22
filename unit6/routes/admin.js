@@ -4,7 +4,7 @@ const express = require('express');
 
 const router = express.Router();
 
-//const rootDir = require('../util/path');
+const rootDir = require('../util/path');
 
 const products = [];
 
@@ -15,7 +15,8 @@ router.get('/add-product', (req, res, next) => {
         path: '/admin/add-product', 
         productCSS: true, 
         formsCSS: true, 
-        activeProduct: true});
+        activeProduct: true
+    });
 });
 
 //.post will only respond to post requests
