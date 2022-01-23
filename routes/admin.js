@@ -2,16 +2,17 @@ const path = require('path');
 
 const express = require('express');
 
+const adminController = require('../controllers/admin');
+
 const router = express.Router();
 
-const productsController = require('../controllers/products');
+// /admin/add-product => GET
+router.get('/add-product', adminController.getAddProduct);
 
-//const rootDir = require('../util/path');
+// /admin/products => GET
+router.get('/products', adminController.getProducts);
 
-//routes below are accessed through /admin/add-product (=> get) & /admin/product (=> POST)
-router.get('/add-product', productsController.getAddProduct);
-
-//.post will only respond to post requests
-router.post('/product', productsController.postAddProduct);
+// /admin/add-product => POST
+router.post('/add-product', adminController.postAddProduct);
 
 module.exports = router;
