@@ -1,4 +1,6 @@
 const path = require('path');
+const PORT = process.env.PORT || 5000;
+const cors = require ('cors');
 
 const express = require('express');
 const bodyParser = require('body-parser');
@@ -32,8 +34,23 @@ app.use(shopRoutes);
 
 app.use(errorController.get404);
 
+const corsOptions = {
+    origin: 'https://cse341stokes.herokuapp.com/',
+    optionsSuccessStatus: 200
+};
+
+app.use(cors(corsOptions));
+
+const options = {
+    family: 4
+};
+
+const MONGODB_URL = process.env.MONGODB_URL || 'mongodb+srv://agandstuff:Scooter3041@cluster0.2ffak.mongodb.net/shop?retryWrites=true&w=majority'
+
 mongoose
-    .connect('mongodb+srv://agandstuff:Scooter3041@cluster0.2ffak.mongodb.net/shop?retryWrites=true&w=majority')
+    .connect(
+        MONGODB_URL, options
+    )
     .then(result => {
         User.findOne().then(user => {
             if (!user) {
@@ -47,7 +64,7 @@ mongoose
                 user.save();
             }
         });
-        app.listen(3000);
+        app.listen(PORT);
     })
     .catch(err => {
         console.log(err);
